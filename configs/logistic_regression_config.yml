@@ -1,0 +1,10 @@
+DATA:
+  TYPE: "TitanicDataset"
+  PATH: "./data"
+  OBJECTIVE_VARIABLE: "Survived"
+MODEL:
+  NAME: "StatsModel"
+  ARCHITECTURE: "sm.Logit"
+  SUMMARY: True
+EVALUATION:
+  METRICS: ["f1", "specificity", "recall"]

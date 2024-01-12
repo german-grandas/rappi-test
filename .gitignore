@@ -1,0 +1,5 @@
+poetry.lock
+data/
+**__pycache**
+
+dist/
