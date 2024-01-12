@@ -9,7 +9,7 @@ from source.datasets.titanic import (
 class TestTitanicDataset(unittest.TestCase):
     def setUp(self):
         # Define some sample data paths for testing
-        self.sample_data_path = "../data"
+        self.sample_data_path = "./data"
         self.sample_config = {
             "PATH": self.sample_data_path,
             "OBJECTIVE_VARIABLE": "Survived",

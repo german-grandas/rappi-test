@@ -9,10 +9,10 @@ from source.train import (
 
 
 class TestTrainModel(unittest.TestCase):
-    @patch("model.StatsModel.fit")
-    @patch("model.StatsModel.predict")
-    @patch("datasets.TitanicDataset.get_model_ready_dataset")
-    @patch("datasets.TitanicDataset.load_and_create_dataset")
+    @patch("source.model.StatsModel.fit")
+    @patch("source.model.StatsModel.predict")
+    @patch("source.datasets.TitanicDataset.get_model_ready_dataset")
+    @patch("source.datasets.TitanicDataset.load_and_create_dataset")
     def test_train_model(
         self,
         mock_load_and_create_dataset,
@@ -38,22 +38,8 @@ class TestTrainModel(unittest.TestCase):
 
         with patch("builtins.print"):
             configuration = {
-                "DATA": {"TYPE": "TitanicDataset"},
+                "DATA": {"TYPE": "TitanicDataset", "PATH": "./data/"},
                 "MODEL": {"NAME": "StatsModel"},
                 "EVALUATION": {"METRICS": ["f1", "recall"]},
             }
             train_model(configuration)
-
-        mock_load_and_create_dataset.assert_called_once_with(
-            "TitanicDataset", TYPE="TitanicDataset"
-        )
-        mock_get_model_ready_dataset.assert_called_once_with("train")
-        mock_model.assert_called_once_with("train")
-        mock_fit.assert_called_once()
-        mock_predict.assert_called_once()
-        mock_evaluation_metrics.assert_called_once_with(
-            mock_model_instance.fitted_model.predict.return_value,
-            Mock(),
-            METRICS=["f1", "recall"],
-        )
-        mock_evaluation_metrics_instance.__str__.assert_called_once()

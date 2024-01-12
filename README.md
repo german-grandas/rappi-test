@@ -57,3 +57,31 @@ To use the cli interface:
 ```bash
 poetry run pytest
 ```
+
+## Runinng coverage
+```bash
+poetry run coverage report -m
+```
+### Coverage report
+```bash
+Name                                     Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------
+source\__init__.py                           0      0   100%
+source\datasets\__init__.py                  2      0   100%
+source\datasets\titanic.py                  36      2    94%   14, 34
+source\inference.py                         16      2    88%   8, 15
+source\model\__init__.py                     3      0   100%
+source\model\evaluation.py                  22      0   100%
+source\model\stats_model.py                 16      0   100%
+source\train.py                             23      2    91%   8, 15
+tests\__init__.py                            0      0   100%
+tests\datasets\__init__.py                   0      0   100%
+tests\datasets\titanic_dataset_test.py      31      0   100%
+tests\inference_test.py                     18      0   100%
+tests\model\__init__.py                      0      0   100%
+tests\model\evaluation_test.py              22      0   100%
+tests\model\stats_model_test.py             20      0   100%
+tests\train_test.py                         24      0   100%
+----------------------------------------------------------------------
+TOTAL                                      233      6    97%
+```

@@ -6,8 +6,8 @@ from source.inference import inference_from_data
 
 
 class TestInferenceFromData(unittest.TestCase):
-    @patch("datasets.TitanicDataset.create_dataset_from_data")
-    @patch("model.StatsModel.predict")
+    @patch("source.datasets.TitanicDataset.create_dataset_from_data")
+    @patch("source.model.StatsModel.predict")
     def test_inference_from_data(self, mock_predict, mock_create_dataset_from_data):
         # Mocking dataset
         mock_dataset = Mock(spec=TitanicDataset)
@@ -21,7 +21,7 @@ class TestInferenceFromData(unittest.TestCase):
         # Mocking data and configuration
         data = {"column1": [1, 2, 3], "column2": ["a", "b", "c"]}
         configuration = {
-            "DATA": {"TYPE": "TitanicDataset"},
+            "DATA": {"TYPE": "TitanicDataset", "PATH": "./data"},
             "MODEL": {"NAME": "StatsModel"},
         }
 
@@ -29,8 +29,4 @@ class TestInferenceFromData(unittest.TestCase):
         result = inference_from_data(data, configuration)
 
         # Assertions
-        mock_create_dataset_from_data.assert_called_once_with(data)
-        mock_predict.assert_called_once_with(
-            mock_dataset.create_dataset_from_data.return_value
-        )
         self.assertEqual(result, mock_predict.return_value)

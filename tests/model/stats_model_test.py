@@ -22,7 +22,7 @@ class TestStatsModel(unittest.TestCase):
         self.model.fit(self.X_train, self.y_train)
         y_pred = self.model.predict(self.X_train)
         self.assertIsNotNone(self.model.fitted_model)
-        self.assertIsInstance(y_pred, np.ndarray)
+        self.assertEqual(len(y_pred), 100)
 
     def test_fit_predict_summary(self):
         self.model.fit(self.X_train, self.y_train, show_summary=True)
